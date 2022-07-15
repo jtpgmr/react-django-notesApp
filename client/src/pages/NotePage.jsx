@@ -8,14 +8,13 @@ const NotePage = () => {
   let params = useParams();
   let navigate = useNavigate();
   let [note, setNote] = useState(null);
-  
   let noteId = params.id;
 
   useEffect(() => {
     let getNote = async () => {
       if (noteId === "new") return;
 
-      let response = await fetch(`/api/notes/${noteId}`);
+      let response = await fetch(`/api/notes/${noteId}/`);
       let data = await response.json();
       console.log("DATA:", data);
       setNote(data);
@@ -41,6 +40,7 @@ const NotePage = () => {
       },
       body: JSON.stringify(note),
     });
+
     navigate("/");
   };
 
@@ -57,11 +57,11 @@ const NotePage = () => {
   let handleSubmit = () => {
     if (noteId !== "new" && !note.body) {
       deleteNote();
-    } else if (noteId !== "new") {
-      updateNote();
     } else if (noteId === "new" && note !== null) {
       createNote();
-    }
+    } else if (noteId !== "new") {
+      updateNote();
+    } 
     navigate("/");
   };
 
