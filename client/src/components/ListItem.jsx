@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useWindowSize from "../utils";
+import useWindowSize from "../useWindowSize";
 
 let getDate = (note) => {
   return new Date(note.updated).toLocaleDateString();

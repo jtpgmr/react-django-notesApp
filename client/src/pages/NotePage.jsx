@@ -7,9 +7,9 @@ import { ReactComponent as Delete } from "../assets/delete.svg";
 const NotePage = () => {
   let params = useParams();
   let navigate = useNavigate();
-  let noteId = params.id;
-
   let [note, setNote] = useState(null);
+  
+  let noteId = params.id;
 
   useEffect(() => {
     let getNote = async () => {
@@ -24,7 +24,7 @@ const NotePage = () => {
   }, [noteId]);
 
   let createNote = async () => {
-    await fetch("/api/notes/create", {
+    await fetch("/api/notes/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const NotePage = () => {
   };
 
   let updateNote = async () => {
-    await fetch(`/api/notes/${noteId}/update`, {
+    await fetch(`/api/notes/${noteId}/`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const NotePage = () => {
   };
 
   let deleteNote = async () => {
-    await fetch(`/api/notes/${noteId}/delete`, {
+    await fetch(`/api/notes/${noteId}/`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
