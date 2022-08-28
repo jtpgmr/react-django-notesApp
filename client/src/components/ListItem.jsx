@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import useWindowSize from "../useWindowSize";
 
-let getDate = (note) => {
+const getDate = (note) => {
   return new Date(note.updated).toLocaleDateString();
 };
 
-let getTitle = (note, size) => {
+const getTitle = (note, size) => {
   let title = note.body.split("\n")[0];
   if (title.length > 50 && size <= 327) {
     return title.slice(0, 30) + "...";
@@ -20,7 +21,7 @@ let getTitle = (note, size) => {
   return title;
 };
 
-let getContent = (note, size) => {
+const getContent = (note, size) => {
   let title = getTitle(note);
   if (title.length > 50) {
     title = title.slice(0, 50);

@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { ReactComponent as ArrowLeft } from "../assets/arrow-left.svg";
 import { ReactComponent as Delete } from "../assets/delete.svg";
 
 const NotePage = () => {
-  let params = useParams();
-  let navigate = useNavigate();
-  let [note, setNote] = useState(null);
-  let noteId = params.id;
+  const params = useParams();
+  const navigate = useNavigate();
+  const [note, setNote] = useState(null);
+  const noteId = params.id;
 
   useEffect(() => {
-    let getNote = async () => {
+    const getNote = async () => {
       if (noteId === "new") return;
 
-      let response = await fetch(`/api/notes/${noteId}/`);
-      let data = await response.json();
+      const response = await fetch(`/api/notes/${noteId}/`);
+      const data = await response.json();
       console.log("DATA:", data);
       setNote(data);
     };
     getNote();
   }, [noteId]);
 
-  let createNote = async () => {
+  const createNote = async () => {
     await fetch("/api/notes/", {
       method: "POST",
       headers: {
@@ -32,7 +32,7 @@ const NotePage = () => {
     });
   };
 
-  let updateNote = async () => {
+  const updateNote = async () => {
     await fetch(`/api/notes/${noteId}/`, {
       method: "PUT",
       headers: {
@@ -44,7 +44,7 @@ const NotePage = () => {
     navigate("/");
   };
 
-  let deleteNote = async () => {
+  const deleteNote = async () => {
     await fetch(`/api/notes/${noteId}/`, {
       method: "DELETE",
       headers: {
@@ -54,7 +54,7 @@ const NotePage = () => {
     navigate("/");
   };
 
-  let handleSubmit = () => {
+  const handleSubmit = () => {
     if (noteId !== "new" && !note.body) {
       deleteNote();
     } else if (noteId === "new" && note !== null) {

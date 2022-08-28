@@ -3,18 +3,18 @@ import AddButton from "../components/AddButton";
 import ListItem from "../components/ListItem";
 
 const NotesListPage = () => {
-  let [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([]);
+
+  const getNotes = async () => {
+    const response = await fetch("/api/notes/");
+    const data = await response.json();
+    // console.log("DATA:", data);
+    setNotes(data);
+  };
 
   useEffect(() => {
     getNotes();
   }, []);
-
-  let getNotes = async () => {
-    let response = await fetch("/api/notes/");
-    let data = await response.json();
-    console.log("DATA:", data);
-    setNotes(data);
-  };
 
   return (
     <div className="notes">

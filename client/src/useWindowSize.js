@@ -8,7 +8,7 @@ export const useWindowSize = () => {
   );
 
   useEffect(() => {
-    let setSize = () => {
+    const setSize = () => {
       setWindowSize(window.innerWidth);
     }
 
