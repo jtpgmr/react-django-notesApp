@@ -4,9 +4,9 @@ from .serializers import NoteSerializer
 
 from datetime import datetime
 
-# def mongo_update(object):
-#     object.updated = datetime.now()
-#     return object.save()
+def mongo_update(object):
+    object.updated = datetime.now()
+    return object.save()
 
 # api/notes/
 def getNotesList(request):
@@ -36,7 +36,7 @@ def updateNote(request, pk):
 
     if serializer.is_valid():
         # serializer.save()
-        serializer.save()
+        serializer.mongo_update()
 
     return Response(serializer.data)
 
