@@ -2,12 +2,6 @@ from rest_framework.response import Response
 from .models import Note
 from .serializers import NoteSerializer
 
-from datetime import datetime
-
-# def mongo_update(object):
-#     object.updated = datetime.now()
-#     return object.save()
-
 # api/notes/
 def getNotesList(request):
   notes = Note.objects.all().order_by("-updated")
