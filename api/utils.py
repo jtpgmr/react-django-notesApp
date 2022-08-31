@@ -1,8 +1,6 @@
-from msilib import datasizemask
 from rest_framework.response import Response
 from .models import Note
 from .serializers import NoteSerializer
-
 from datetime import datetime
 
 # api/notes/
@@ -22,8 +20,8 @@ def createNotes(request):
 
 # api/notes/<str:pk>
 def getNoteContent(request, pk):
-    notes = Note.objects.get(id=pk)
-    serializer = NoteSerializer(notes, many=False)
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)
 
 def updateNote(request, pk):
