@@ -16,7 +16,6 @@ const NotePage = () => {
 
       const response = await fetch(`/api/notes/${noteId}/`);
       const data = await response.json();
-      console.log("DATA:", data);
       setNote(data);
     };
     getNote();
