@@ -1,3 +1,4 @@
+from msilib import datasizemask
 from rest_framework.response import Response
 from .models import Note
 from .serializers import NoteSerializer
@@ -5,8 +6,8 @@ from .serializers import NoteSerializer
 from datetime import datetime
 
 def mongo_update(object):
-    object.updated = datetime.now()
-    return object.save()
+  object.updated = datetime.now()
+  return object.save()
 
 # api/notes/
 def getNotesList(request):
@@ -31,12 +32,13 @@ def getNoteContent(request, pk):
 
 def updateNote(request, pk):
     data = request.data
+    data["updated"] = datetime.now()
     note = Note.objects.get(id=pk)
     serializer = NoteSerializer(instance=note, data=data)
+    print(data)
 
     if serializer.is_valid():
-        # serializer.save()
-        serializer.mongo_update()
+      serializer.save()
 
     return Response(serializer.data)
 

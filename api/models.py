@@ -6,7 +6,8 @@ from datetime import datetime
 class Note(Document):
   body = fields.StringField()
   created = fields.DateTimeField(required=True, default=datetime.utcnow)
-  updated= fields.DateTimeField(required=True, default=datetime.utcnow)
+  updated = fields.DateTimeField(required=True, default=datetime.utcnow)
+
 
   def __str__(self): 
     return self.body[0:50]
